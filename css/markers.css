@@ -1,0 +1,22 @@
+.call-status {
+	border: 1px solid #5a5a5a;
+	border-radius: 50%;
+	display: inline-block;
+	height: 25px;
+	width: 25px;
+	vertical-align: middle;
+}
+.call-status.call-status-queued {
+	background: grey;
+}
+.call-status.call-status-calling {
+	background: orange;
+}
+.call-status.call-status-called {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c1fc5a+0,7cbc0a+100 */
+	background: #c1fc5a; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #c1fc5a 0%, #7cbc0a 100%); /* FF3.6-15 */
+	background: -webkit-radial-gradient(center, ellipse cover,  #c1fc5a 0%,#7cbc0a 100%); /* Chrome10-25,Safari5.1-6 */
+	background: radial-gradient(ellipse at center,  #c1fc5a 0%,#7cbc0a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1fc5a', endColorstr='#7cbc0a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}

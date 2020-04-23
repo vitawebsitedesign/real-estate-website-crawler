@@ -1,0 +1,1 @@
+var realEstateApp = angular.module('RealEstateApp', []);

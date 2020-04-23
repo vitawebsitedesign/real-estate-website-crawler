@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>X</title>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRo2LtJO6kJRTZbdhdXurVvDce_pxbHCs"></script>
+		<script src="js/angular-1.6.1.js"></script>
+		<script src="js/RealEstateApp.js"></script>
+		<script src="js/CrawlerService.js"></script>
+		<script src="js/CrawlerFactory.js"></script>
+		<script src="js/CrawlerController.js"></script>
+		<link href="css/bootstrap-3.3.7.min.css" rel="stylesheet">
+		<link href="css/map.css" rel="stylesheet">
+		<link href="css/markers.css" rel="stylesheet">
+		<link href="css/listing.css" rel="stylesheet">
+	</head>
+	<body data-ng-app="RealEstateApp">
+		<div data-ng-controller="CrawlerController" class="container-fluid">
+			<div class="row">
+				<div id="map">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<span data-ng-repeat="(suburb, call) in callMetadata" class="col-xs-12 col-sm-3, col-md-1">
+						<div data-ng-class="{'call-status-queued': isCallStatus(call.callStatus, 'queued'),
+							'call-status-calling': isCallStatus(call.callStatus, 'calling'),
+							'call-status-called': isCallStatus(call.callStatus, 'called')
+						}" class="call-status"></div>
+						<span>{{ ::suburb }}</span>
+					</span>
+				</div>
+			</div>
+
+			<div data-ng-class="{'ng-hide': !showMarkersCounter}" class="row text-center">
+				<span data-ng-class="{'ng-hide': delayedGeocodes.length === 0}" class="col-xs-12">{{ delayedGeocodes.length }} more markers to place...</span>
+				<span data-ng-class="{'ng-hide': delayedGeocodes.length > 0}" class="col-xs-12">All markers placed. Have a nice day.</span>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-8 col-md-6 col-xs-offset-0 col-sm-offset-2 col-md-offset-3">
+					<table class="table table-striped listings">
+						<thead>
+							<tr>
+								<th>Price</th>
+								<th>Address</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="listing in getAllListings() | orderBy:'+price' track by $index">
+								<td>
+									<span>{{ ::listing.price | currency : '$' : 0 }}</span>
+								</td>
+								<td>
+									<a data-ng-show="listing.price" data-ng-href="{{ ::listing.url }}" target="_blank">
+										<span>{{ ::listing.address }}</span>
+									</a>						
+								</td>
+							</tr>				
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
